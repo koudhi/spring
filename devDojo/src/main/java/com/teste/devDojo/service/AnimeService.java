@@ -7,6 +7,8 @@ import com.teste.devDojo.repository.AnimeRepository;
 import com.teste.devDojo.requests.AnimePutRequestBody;
 import com.teste.devDojo.requests.AnimesPostRequestBody;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,7 +21,11 @@ public class AnimeService {
 
     private final AnimeRepository animeRepository;
 
-    public List<Anime> listAll(){
+    public Page<Anime> listAll(Pageable pageable){
+        return animeRepository.findAll(pageable);
+    }
+
+    public List<Anime> listAllNonPageable(){
         return animeRepository.findAll();
     }
 
@@ -34,6 +40,7 @@ public class AnimeService {
 
     public Anime save(AnimesPostRequestBody animesPostRequestBody){
         Anime anime = Anime.builder().name(animesPostRequestBody.getName()).build();
+        System.out.println(AnimeMapper.INSTANCE.toAnime(animesPostRequestBody)+",,,"+animesPostRequestBody);
         return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animesPostRequestBody));
     }
     public void delete(Long id){

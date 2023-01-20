@@ -30,6 +30,5 @@ logging:
   pattern:
     console: "%d %-5level %logger : %msg%n"
   level:
-    org.springframework: info
-    org.hibernate: debug
+    org.springframework: warn
 # Server configuration
