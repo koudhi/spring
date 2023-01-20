@@ -19,6 +19,6 @@ public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long animeId;
-
+    
     private String name;
 }
