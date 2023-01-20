@@ -18,6 +18,7 @@ import javax.persistence.Id;
 public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long animeId;
+
     private String name;
 }
